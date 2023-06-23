@@ -19,20 +19,31 @@ class MostrarRegistros extends Component
     }
     public function render()
     {
-        $registros = registro::when($this->termino, function ($query) {
-            $query->where('reg_asunto', 'LIKE', "%" . $this->termino . "%");
-        })
-            ->paginate();
-        $registros = Registro::where('reg_fkusuario', auth()->user()->id)->when($this->termino, function ($query) {
-            $query->where('reg_asunto', 'LIKE', "%" . $this->termino . "%");
-        })->when($this->termino, function ($query) {
-            $query->orWhere('reg_ndocumento', 'LIKE', "%" . $this->termino . "%");
-        })->when($this->dependencia, function ($query) {
-            $query->where('reg_fkdepedencia', $this->dependencia);
-        })->when($this->expediente, function ($query) {
-            $query->where('reg_fkexpediente', $this->expediente);
-        })
-            ->paginate();
+        if (auth()->user()->rol === 2) {
+            $registros = Registro::when($this->termino, function ($query) {
+                $query->where('reg_asunto', 'LIKE', "%" . $this->termino . "%");
+            })->when($this->termino, function ($query) {
+                $query->orWhere('reg_ndocumento', 'LIKE', "%" . $this->termino . "%");
+            })->when($this->dependencia, function ($query) {
+                $query->where('reg_fkdepedencia', $this->dependencia);
+            })->when($this->expediente, function ($query) {
+                $query->where('reg_fkexpediente', $this->expediente);
+            })
+                ->paginate();
+        } else {
+
+            $registros = Registro::where('reg_fkusuario', auth()->user()->id)->when($this->termino, function ($query) {
+                $query->where('reg_asunto', 'LIKE', "%" . $this->termino . "%");
+            })->when($this->termino, function ($query) {
+                $query->orWhere('reg_ndocumento', 'LIKE', "%" . $this->termino . "%");
+            })->when($this->dependencia, function ($query) {
+                $query->where('reg_fkdepedencia', $this->dependencia);
+            })->when($this->expediente, function ($query) {
+                $query->where('reg_fkexpediente', $this->expediente);
+            })
+                ->paginate();
+        }
+
         return view('livewire.mostrar-registros', [
             'registros' => $registros,
         ]);
