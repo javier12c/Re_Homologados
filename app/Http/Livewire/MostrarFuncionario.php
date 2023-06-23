@@ -7,6 +7,12 @@ use Livewire\Component;
 
 class MostrarFuncionario extends Component
 {
+    protected $listeners = ['EliminarFuncionario'];
+    public function EliminarFuncionario(Servidorespublico $funcionario)
+    {
+        $funcionario->delete();
+    }
+
     public function render()
     {
         $funcionarios = Servidorespublico::paginate(10);

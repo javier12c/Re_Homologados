@@ -46,9 +46,10 @@
                             <td class="px-3 py-2">{{ $funcionario->emp_puesto }}</td>
                             <td class=" mt-5  flex gap-3 w-14 items-center justify-end mr-4">
                                 @if (auth()->user()->rol === 2)
-                                    <a href="#" class="">
+                                    <button wire:click="$emit('MostrarAlerta',{{ $funcionario->id }})" href="#"
+                                        class="">
                                         <img src="{{ asset('img/Vector3.svg') }}" alt="">
-                                    </a>
+                                    </button>
                                 @endif
 
                                 <a href="{{ route('funcionarios.edit', $funcionario->id) }}">
@@ -67,3 +68,31 @@
     </div>
 
 </main>
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Livewire.on('MostrarAlerta', funcionarioId => {
+            Swal.fire({
+                title: '¿Eliminar servidor publico?',
+                text: "Un funcionario eliminado no se puede recuperar. Revisa sus registros",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, !Eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Eliminar vacante
+                    Livewire.emit('EliminarFuncionario', funcionarioId)
+                    Swal.fire(
+                        'Eliminado!',
+                        'Eliminado correctamente',
+                        'success'
+                    )
+                }
+            })
+        })
+    </script>
+@endpush
