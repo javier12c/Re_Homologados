@@ -71,4 +71,8 @@ class UsuarioController extends Controller
         //Redireccionando a la misma vista
         return redirect()->back();
     }
+    public function shows()
+    {
+        return view('usuario.shows');
+    }
 }

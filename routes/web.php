@@ -37,6 +37,10 @@ Route::post(
     '/create',
     [UsuarioController::class, 'store']
 )->middleware(['auth', 'verified']);
+Route::get(
+    '/mostrar',
+    [UsuarioController::class, 'shows']
+)->middleware(['auth', 'verified'])->name('usuario.shows');
 
 //Registros
 Route::get(
