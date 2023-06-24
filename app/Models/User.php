@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Registro;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cat_unidadependencia;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,9 @@ class User extends Authenticatable
     public function dependencia()
     {
         return $this->belongsTo(Cat_unidadependencia::class, 'fkdepedencia', 'dep_id');
+    }
+    public function registros()
+    {
+        return $this->hasMany(Registro::class, 'reg_fkusuario');
     }
 }
