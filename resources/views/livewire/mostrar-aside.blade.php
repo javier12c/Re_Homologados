@@ -1,8 +1,12 @@
 <aside id="logo-sidebar"
     class="md:fixed md:top-0 md:left-0 md:h-fit z-40 w-64  pt-20   bg-white border-r border-gray-200  "
     aria-label="Sidebar">
-    <img src="{{ asset('img/logo ACA.png') }}" alt="Logo" class=" p-3">
-    <h1 class=" text-center font-bold text-2xl">Panel</h1>
+    <img src="{{ asset('img/logo ACA.png') }}" alt="Logo" class=" ">
+    @if (auth()->user()->rol === 2)
+        <h1 class=" text-center font-bold text-xl">Administracion</h1>
+    @else
+        <h1 class=" text-center font-bold text-2xl">Panel</h1>
+    @endif
     <div class="h-full px-3 pb-4  bg-white">
         <ul class="space-y-2 font-medium">
             <li>
@@ -67,4 +71,32 @@
             </li>
         </ul>
     </div>
+    @if (auth()->user()->rol === 2)
+        <hr class=" h-px  bg-gray-200 border-0 dark:bg-gray-700">
+        <h1 class=" text-center font-bold text-xl">Gestion de usuario</h1>
+        <div class="h-full px-3 pb-4  bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="{{ route('usuario.create') }}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <img src="{{ asset('img/new (2).svg') }}" alt=""
+                            class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                        <span class="ml-3">Nuevo Usuario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tableUsuario.php"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg aria-hidden="true"
+                            class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                        </svg>
+                        <span class="ml-3">Registros de usuarios</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    @endif
 </aside>

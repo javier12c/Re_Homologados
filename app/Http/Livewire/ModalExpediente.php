@@ -25,7 +25,7 @@ class ModalExpediente extends Component
 
         ]);
         //Crear un mensaje
-        session()->flash('mensaje', 'La vacante se publico correctamente');
+        session()->flash('mensaje', 'El expediente se guardo');
 
         return redirect()->route('registro.index');
     }
