@@ -74,6 +74,7 @@ class EditarRegistro extends Component
         $this->serie = $registro->reg_series;
         $this->ubicacion = $registro->reg_ubicacion;
         $this->observaciones = $registro->reg_observaciones;
+        $this->status = $registro->reg_status;
     }
     public function editarRegistro()
     {
@@ -98,6 +99,7 @@ class EditarRegistro extends Component
         $registro->reg_series = $datos['serie'];
         $registro->reg_ubicacion = $datos['ubicacion'];
         $registro->reg_observaciones = $datos['observaciones'];
+        $registro->reg_status = $datos['status'];
         // $vacante->titulo = $datos['titulo'];
 
 

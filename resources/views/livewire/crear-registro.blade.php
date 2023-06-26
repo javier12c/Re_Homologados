@@ -261,7 +261,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="sm:col-span-3" hidden>
+                <div class="sm:col-span-3 hidden">
                     <x-input-label for="status" :value="__('Status ')" />
 
                     <select id="status" wire:model="status" :value="old('status')"

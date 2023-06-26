@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\NotificacionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsuarioController;
@@ -56,6 +57,10 @@ Route::get('/registros/{registro}/edit', [RegistroController::class, 'edit'])->m
 //Funcionarios
 Route::get('/funcionarios/show', [FuncionarioController::class, 'show'])->middleware(['auth', 'verified'])->name('funcionarios.show');
 Route::get('/funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->middleware(['auth', 'verified'])->name('funcionarios.edit');
+
+//Notificaciones
+Route::get('/notificaciones',  NotificacionController::class)->middleware(['auth', 'verified'])->name('notificaciones');
+
 
 //Perfin usuario
 Route::middleware('auth')->group(function () {

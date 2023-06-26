@@ -259,16 +259,22 @@
                         @enderror
                     </div>
                 </div>
-                <div class="sm:col-span-3" hidden>
-                    <x-input-label for="status" :value="__('Status ')" />
+                @if (auth()->user()->rol === 2)
+                    <div class="sm:col-span-3">
+                        <x-input-label for="status" :value="__('Status ')" />
 
-                    <select id="status" wire:model="status" :value="old('status')"
-                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full">
-                        <option selected="selected" value="1">En revision</option>
-                        <option value="2">Validado</option>
-                    </select>
+                        <select id="status" wire:model="status" :value="old('status')"
+                            class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full">
+                            <option value="">Seleccione un status</option>
+                            <option selected="selected" value="1">En revision</option>
+                            <option value="2">Validado</option>
+                        </select>
+                        @error('status')
+                            <livewire:mostrar-alerta :message="$message"></livewire:mostrar-alerta>
+                        @enderror
 
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -2,15 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
+use App\Models\registro;
 use App\Models\Cat_expediente;
 use App\Models\Cat_tdocumento;
 use App\Models\Servidorespublico;
 use App\Models\Cat_unidadependencia;
-use App\Models\registro;
+use App\Notifications\NuevoRegistro;
+use Illuminate\Support\Facades\Notification;
 
 class CrearRegistro extends Component
 {
+    public $user;
+    public $notifiable_id;
     // Declaracion de variables wire:model
     public $reg_fecha_documento;
     public $tipo_documento;
@@ -53,9 +58,16 @@ class CrearRegistro extends Component
         'status' => 'nullable',
 
     ];
-    // Metodo para guardars
-    public function crearRegistro()
+    public function mount(User $notifiable_id)
     {
+        $notifiable_id = User::find(3);
+        $this->notifiable_id = $notifiable_id;
+    }
+    // Metodo para guardars
+    public function crearRegistro(User $user)
+    {
+
+
         $datos = $this->validate();
         registro::create([
             'reg_ndocumento' => $datos['reg_ndocumento'],
@@ -76,6 +88,8 @@ class CrearRegistro extends Component
             'reg_fkusuario' => auth()->user()->id,
             'reg_status' =>  $datos['status'],
         ]);
+        //crear notificacion
+        $this->notifiable_id->notify(new NuevoRegistro($datos['reg_ndocumento'], auth()->user()->id, auth()->user()->name));
         //Crear un mensaje
         session()->flash('mensaje', 'Se creo el registro correctamente');
 

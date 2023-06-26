@@ -30,7 +30,15 @@
                     Homologados</a>
             </div>
             @auth
+
                 <nav class="flex gap-4 text-center items-center">
+                    @if (auth()->user()->rol === 2)
+                        <a class="  w-8 h-8 bg-green-500 hover:bg-green-600 rounded-full flex flex-col justify-center items-center text-sm  font-extrabold text-white"
+                            href=" {{ route('notificaciones') }} ">
+                            {{ Auth::user()->unreadNotifications->count() }}
+
+                        </a>
+                    @endif
                     <a class="bg-boton2 text-color-hover1 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-fit"
                         href="{{ route('usuario.index') }}">Hola : {{ Auth()->user()->name }} </a>
                     <form method="POST" action="{{ route('logout') }}">

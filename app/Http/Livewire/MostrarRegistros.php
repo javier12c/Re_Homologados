@@ -20,7 +20,7 @@ class MostrarRegistros extends Component
     public function render()
     {
         if (auth()->user()->rol === 2) {
-            $registros = Registro::when($this->termino, function ($query) {
+            $registros = Registro::orderBy('created_at', 'DESC')->when($this->termino, function ($query) {
                 $query->where('reg_asunto', 'LIKE', "%" . $this->termino . "%");
             })->when($this->termino, function ($query) {
                 $query->orWhere('reg_ndocumento', 'LIKE', "%" . $this->termino . "%");
