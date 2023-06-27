@@ -29,7 +29,7 @@
                             <td class="px-3 py-2">{{ $user->registros->count() }}</td>
 
                             <td class=" mt-5  flex gap-3 w-14 items-center justify-end">
-                                <a href="#" class="">
+                                <a href="{{ route('') }}" class="">
                                     <img src="{{ asset('img/Vector1.svg') }}" alt="">
                                 </a>
                                 <a href="#">

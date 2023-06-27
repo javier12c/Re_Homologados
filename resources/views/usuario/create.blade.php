@@ -8,12 +8,12 @@
             {{ session('mensaje') }}
         </div>
     @endif
-    <main class="md:flex md:flex-row justify-center items-center bg-gray-50  ">
+    <main class="md:flex md:flex-row justify-center items-center bg-gray-50 md:mt-14">
 
         <form method="POST" action="{{ route('usuario.create') }}" novalidate class=" w-3/4 ">
             @csrf
+            <h1 class="font-bold text-2xl mt-2 text-center">Creando usuario </h1>
             <div class="mt-10 pb-10 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-6">
-
                 <!-- Name -->
                 <div class=" sm:col-span-6 sm:col-start-1">
                     <x-input-label for="name" :value="__('Nombre')" />
