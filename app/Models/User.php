@@ -56,6 +56,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Registro::class, 'reg_fkusuario');
     }
+    public function registro()
+    {
+        return $this->belongsTo(Registro::class, 'reg_fkusuario');
+    }
     public function administrador()
     {
         return User::where('rol', 2);

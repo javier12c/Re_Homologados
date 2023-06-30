@@ -24,9 +24,13 @@
         </div>
 
     </div>
-
+    <div class="card-body">
+        <h1>{{ $chart->options['chart_title'] }}</h1>
+        {!! $chart->renderHtml() !!}
     </div>
-
 </main>
 
-<livewire:editar-usuario></livewire:editar-usuario>
+@push('scripts')
+    {!! $chart1->renderChartJsLibrary() !!}
+    {!! $chart1->renderJs() !!}
+@endpush

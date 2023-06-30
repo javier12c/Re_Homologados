@@ -47,8 +47,9 @@ class Registro extends Model
     {
         return $this->belongsTo(Cat_expediente::class, 'reg_fkexpediente', 'exp_id');
     }
-    public function administrador()
+
+    public function user()
     {
-        return User::where('rol', 2)->get();
+        return $this->belongsTo(User::class, 'reg_fkusuario');
     }
 }

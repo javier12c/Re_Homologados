@@ -48,15 +48,22 @@
                             @enderror
                         </div>
                     </div>
-
-
-                    <x-button2 class=" w-full">
+                    <x-button2 wire:click="$emit('MostrarAlerta')" class=" w-full">
                         {{ 'Crear Expediente ' }}
                     </x-button2>
-
-
                 </form>
             </div>
         </div>
     </div>
 </div> <!-- Cierre modal-->
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Livewire.on('MostrarAlerta', funcionarioId => {
+            Swal.then(
+                'Expediente Guardado con exito',
+                'success'
+            )
+        })
+    </script>
+@endpush

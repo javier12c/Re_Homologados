@@ -10,12 +10,17 @@ class ModalExpediente extends Component
 {
     public $nombreexpediente;
     public $dependenciass;
+    protected $listeners = ['MostrarPagina'];
 
 
     protected $rules = [
         'nombreexpediente' => 'required',
         'dependenciass' => 'required'
     ];
+    public function MostrarPagina()
+    {
+        return view('registro.index');
+    }
     public function crearExpediente()
     {
         $datos = $this->validate();

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cat_unidadependencia;
 use App\Models\User;
+use App\Charts\Charts;
+use App\Charts\Mostrar;
+use App\Models\Registro;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Cat_unidadependencia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Password;
 
 class UsuarioController extends Controller
 {
@@ -19,16 +23,54 @@ class UsuarioController extends Controller
 
     public function index(User $user, Cat_unidadependencia $cat_unidadependencia)
     {
-        return view('usuario.index', [
+        $user = User::find(auth()->user()->id); // Reemplaza '1' con el ID del usuario que deseas mostrar
+
+        $registros = $user->registros()
+            ->selectRaw('DATE(created_at) as fecha, COUNT(*) as total_registros')
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get();
+
+        $fechas = $registros->pluck('fecha')->toArray();
+        $cantidades = $registros->pluck('total_registros')->toArray();
+
+        return view('usuario.show', [
             'user' => $user,
-            'cat_unidadependencia' => $cat_unidadependencia,
+            'fechas' => $fechas,
+            'cantidades' => $cantidades
         ]);
     }
     public function show(User $user)
     {
+        // $chart_options = [
+        //     'chart_title' => 'Registros por semana',
+        //     'chart_type' => 'bar',
+        //     'report_type' => 'group_by_relationship',
+        //     'model' => 'App\Models\User',
+        //     'relationship_name' => 'registro', // represents function user() on Transaction model
+        //     'group_by_field' => 'created_at', // users.nam
+        //     'filter_field' => 'created_at',
+        //     'filter_days' => 10, // show only transactions for last 30 days
+        //     'filter_period' => 'week', // show only transactions for this week
+        // ];
+        // $chart = new LaravelChart($chart_options);
+
+        // Obtén los datos de la base de datos
+        $user = User::find(auth()->user()->id); // Reemplaza '1' con el ID del usuario que deseas mostrar
+
+        $registros = $user->registros()
+            ->selectRaw('DATE(created_at) as fecha, COUNT(*) as total_registros')
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get();
+
+        $fechas = $registros->pluck('fecha')->toArray();
+        $cantidades = $registros->pluck('total_registros')->toArray();
 
         return view('usuario.show', [
-            'user' => $user
+            'user' => $user,
+            'fechas' => $fechas,
+            'cantidades' => $cantidades
         ]);
     }
     public function create()

@@ -279,7 +279,6 @@
             {{ 'Crear Registro ' }}
         </x-button2>
     </div>
-
 </form>
 
 {{-- Modales --}}
