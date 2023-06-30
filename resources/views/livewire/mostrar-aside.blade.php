@@ -10,7 +10,7 @@
     <div class="h-full px-3 pb-4  bg-white">
         <ul class="space-y-2 font-medium">
             <li>
-                <x-nav-link :href="route('usuario.show')" :active="request()->routeIs('usuario.show')">
+                <x-nav-link :href="route('usuario.index')" :active="request()->routeIs('usuario.index')">
                     <svg aria-hidden="true"
                         class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                 </x-nav-link>
             </li>
             <li>
-                <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                <x-nav-link :href="route('usuario.show')" :active="request()->routeIs('usuario.show')">
 
                     <svg aria-hidden="true"
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"

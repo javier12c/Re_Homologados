@@ -18,19 +18,16 @@
             <h1 class=" font-bold">Correo: <span class="text-usuario-letra">{{ Auth()->user()->email }}
                 </span></h1>
         </div>
-        <div class=" rounded-2xl bg-white mt-4 mx-10  h-12 py-2 px-2 mb-9">
+        <div class=" rounded-2xl bg-white mt-4 mx-10  h-12 py-2 px-2 mb-5">
             <h1 class=" font-bold">Telefono: <span class="text-usuario-letra"> {{ Auth()->user()->telefono }}
                 </span></h1>
         </div>
+        <div class="container pb-6 px-10  min-w-full flex  items-center gap-4 object-center mx-auto">
+            <a href="{{ route('profile.edit') }}"
+                class="block text-white bg-header boton-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
+                Editar Perfil
+            </a>
+        </div>
+    </div>
 
-    </div>
-    <div class="card-body">
-        <h1>{{ $chart->options['chart_title'] }}</h1>
-        {!! $chart->renderHtml() !!}
-    </div>
 </main>
-
-@push('scripts')
-    {!! $chart1->renderChartJsLibrary() !!}
-    {!! $chart1->renderJs() !!}
-@endpush

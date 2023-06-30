@@ -1,6 +1,7 @@
 <section>
+
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 mt-4">
             {{ __('Editar contraseña') }}
         </h2>
 
@@ -44,3 +45,13 @@
         </div>
     </form>
 </section>
+@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#toggleButton').click(function() {
+                $('#myForm').toggle();
+            });
+        });
+    </script>
+@endpush

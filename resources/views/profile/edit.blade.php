@@ -15,8 +15,10 @@
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
-
-            <div class="p-4 sm:p-8 bg-gray-100 dark:bg-gray-800 shadow sm:rounded-lg">
+            <button
+                class="rounded-md bg-header boton-hover focus:ring-4 focus:outline-none px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-invisible cursor-pointer"
+                id="toggleButton">Editar contraseña</button>
+            <div id="myForm" style="display: none;" class="p-4 sm:p-8 bg-gray-100 dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>

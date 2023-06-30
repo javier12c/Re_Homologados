@@ -61,7 +61,6 @@ Route::get('/funcionarios/{funcionario}/edit', [FuncionarioController::class, 'e
 //Notificaciones
 Route::get('/notificaciones',  NotificacionController::class)->middleware(['auth', 'verified'])->name('notificaciones');
 
-Route::get('/registros-usuario', 'ChartController@registrosUsuario')->name('registros.usuario');
 
 //Perfin usuario
 Route::middleware('auth')->group(function () {

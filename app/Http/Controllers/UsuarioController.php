@@ -42,35 +42,9 @@ class UsuarioController extends Controller
     }
     public function show(User $user)
     {
-        // $chart_options = [
-        //     'chart_title' => 'Registros por semana',
-        //     'chart_type' => 'bar',
-        //     'report_type' => 'group_by_relationship',
-        //     'model' => 'App\Models\User',
-        //     'relationship_name' => 'registro', // represents function user() on Transaction model
-        //     'group_by_field' => 'created_at', // users.nam
-        //     'filter_field' => 'created_at',
-        //     'filter_days' => 10, // show only transactions for last 30 days
-        //     'filter_period' => 'week', // show only transactions for this week
-        // ];
-        // $chart = new LaravelChart($chart_options);
-
         // Obtén los datos de la base de datos
-        $user = User::find(auth()->user()->id); // Reemplaza '1' con el ID del usuario que deseas mostrar
-
-        $registros = $user->registros()
-            ->selectRaw('DATE(created_at) as fecha, COUNT(*) as total_registros')
-            ->groupBy('fecha')
-            ->orderBy('fecha')
-            ->get();
-
-        $fechas = $registros->pluck('fecha')->toArray();
-        $cantidades = $registros->pluck('total_registros')->toArray();
-
-        return view('usuario.show', [
-            'user' => $user,
-            'fechas' => $fechas,
-            'cantidades' => $cantidades
+        return view('usuario.index', [
+            'user' => $user
         ]);
     }
     public function create()
