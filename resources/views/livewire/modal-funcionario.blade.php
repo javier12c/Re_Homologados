@@ -63,17 +63,15 @@
                             </div>
                         </div>
                         <div class="flex gap-4">
-                            <x-button2 class="">
+                            <x-button2 class="" wire:click="$emit('MostrarAlerta')">
                                 {{ 'Crear Funcionario ' }}
                             </x-button2>
-                            <button class="bg-gray-500  text-white font-bold py-2 px-4 rounded" wire:click="closeModal"
-                                type="button">Cancelar</button>
+                            <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+                                wire:click="closeModal" type="button">Cancelar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-</div>
-@endif
+    @endif
 </div>

@@ -3,8 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Cat_unidadependencia;
 use App\Models\Servidorespublico;
+use App\Models\Cat_unidadependencia;
+
 
 class ModalFuncionario extends Component
 {
@@ -14,6 +15,7 @@ class ModalFuncionario extends Component
     public $email;
     public $cargo;
     public $isOpen = false;
+
 
     protected $listeners = [
         'openModal' => 'openModal',
@@ -58,6 +60,7 @@ class ModalFuncionario extends Component
 
         // Cerrar el modal
         $this->isOpen = false;
+        $this->emit('formularioGuardado');
     }
     public function render()
     {

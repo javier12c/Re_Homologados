@@ -54,7 +54,6 @@
                         <livewire:mostrar-alerta :message="$message"></livewire:mostrar-alerta>
                     @enderror
                 </div>
-
                 <div wire:poll.500ms class="sm:col-span-3">
                     <x-input-label for="servidorespublicoss" :value="__('Signado Por')" class=" mt-4" />
                     <select id="servidorespublicoss" wire:model="servidorespublicoss"
@@ -87,6 +86,7 @@
                         class="text-white bg-empleado-boton bg-empleado-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
                         wire:click="$emit('openModal')">El servidor publico no esta registrado</button>
                 </div>
+
                 <div class="sm:col-span-4">
                     <x-input-label for="asunto" :value="__('Asunto')" />
                     <div class="mt-2">
@@ -275,3 +275,17 @@
 {{-- Modales --}}
 <livewire:modal-funcionario></livewire:modal-funcionario>
 <livewire:modal-expediente></livewire:modal-expediente>
+
+@push('scripts')
+    <script>
+        document.addEventListener('livewire:load', function() {
+            Livewire.on('formularioGuardado', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'El formulario se ha guardado correctamente.'
+                });
+            });
+        });
+    </script>
+@endpush

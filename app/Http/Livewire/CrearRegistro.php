@@ -10,6 +10,7 @@ use App\Models\Cat_tdocumento;
 use App\Models\Servidorespublico;
 use App\Models\Cat_unidadependencia;
 use App\Notifications\NuevoRegistro;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Notification;
 
 class CrearRegistro extends Component
@@ -37,6 +38,7 @@ class CrearRegistro extends Component
     public $ubicacion;
     public $observaciones;
     public $status = 1;
+
     //Funcionario
 
     // Reglas de validacion
