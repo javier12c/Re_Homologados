@@ -8,16 +8,28 @@ use App\Models\Servidorespublico;
 
 class ModalFuncionario extends Component
 {
-
     public $nombre;
     public $dependencia;
     public $apellido;
     public $email;
     public $cargo;
+    public $isOpen = false;
+
+    protected $listeners = [
+        'openModal' => 'openModal',
+    ];
+
+    public function openModal()
+    {
+        $this->isOpen = true;
+    }
+
+    public function closeModal()
+    {
+        $this->isOpen = false;
+    }
 
     //Funcionario
-
-
     protected $rules = [
         'nombre' => 'required',
         'dependencia' => 'required',
@@ -38,10 +50,14 @@ class ModalFuncionario extends Component
             'emp_puesto' => $datos['cargo'],
         ]);
         //Crear un mensaje
-        session()->flash('mensaje', 'El funcionario se publico correctamente');
+        $this->nombre = '';
+        $this->email = '';
+        $this->apellido = '';
+        $this->dependencia = '';
+        $this->cargo = '';
 
-        // Redireccionar el usuario
-        return redirect()->route('registro.index');
+        // Cerrar el modal
+        $this->isOpen = false;
     }
     public function render()
     {

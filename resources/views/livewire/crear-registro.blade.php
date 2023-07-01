@@ -1,4 +1,4 @@
-<form action="" novalidate wire:submit.prevent="crearRegistro">
+<form novalidate wire:submit.prevent="crearRegistro">
     <div class="space-y-14">
         <div class="border-b border-gray-900/10 p-11 bg-formulario mt-16 rounded-sm">
             <h2 class=" font-bold text-3xl leading-7 text-gray-900 text-center">Datos Generales</h2>
@@ -55,7 +55,7 @@
                     @enderror
                 </div>
 
-                <div class="sm:col-span-3">
+                <div wire:poll.500ms class="sm:col-span-3">
                     <x-input-label for="servidorespublicoss" :value="__('Signado Por')" class=" mt-4" />
                     <select id="servidorespublicoss" wire:model="servidorespublicoss"
                         :value="old('servidorespublicoss')"
@@ -63,7 +63,7 @@
                         <option value="">--seleccione el servidor publico--</option>
                         @foreach ($servidorespublicos as $servidorespublico)
                             <option value="{{ $servidorespublico->id }}">
-                                {{ $servidorespublico->emp_nombre . $servidorespublico->emp_apellido }}
+                                {{ $servidorespublico->emp_nombre . ' ' . $servidorespublico->emp_apellido }}
                             </option>
                         @endforeach
                     </select>
@@ -72,8 +72,6 @@
                     @enderror
 
                 </div>
-
-
                 @if (!is_null($cargo))
                     <div class="sm:col-span-3 mt-2">
                         <x-input-label for="cargo" :value="__('Cargo')" />
@@ -84,15 +82,11 @@
                         @enderror
                     </div>
                 @endif
-
-                <div class="sm:col-span-6">
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        class="block text-white bg-empleado-boton bg-empleado-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
-                        type="button">
-                        No existe el funcionario
-                    </button>
+                <div class="sm:col-span-6 mt-2">
+                    <button type="button"
+                        class="text-white bg-empleado-boton bg-empleado-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
+                        wire:click="$emit('openModal')">El servidor publico no esta registrado</button>
                 </div>
-
                 <div class="sm:col-span-4">
                     <x-input-label for="asunto" :value="__('Asunto')" />
                     <div class="mt-2">
@@ -113,7 +107,7 @@
 
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                <div class="sm:col-span-3">
+                <div wire:poll.500ms class="sm:col-span-3">
                     <x-input-label for="dirigido" :value="__('Dirigido A')" class=" mt-4" />
                     <select id="dirigido" wire:model="dirigido" :value="old('dirigido')"
                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full">
@@ -141,15 +135,11 @@
                         @enderror
                     </div>
                 @endif
-
-                <div class="sm:col-span-6">
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        class="block text-white bg-empleado-boton bg-empleado-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
-                        type="button">
-                        No existe el funcionario
-                    </button>
+                <div class="sm:col-span-6 mt-2">
+                    <button type="button"
+                        class="text-white bg-empleado-boton bg-empleado-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full"
+                        wire:click="$emit('openModal')">El servidor publico no esta registrado</button>
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-input-label for="anexo" :value="__('Anexos')" />
                     <div iv class="flex gap-4">
@@ -169,6 +159,7 @@
                         @enderror
                     </div>
                 </div>
+
                 <div class="sm:col-span-4">
                     <x-input-label for="seguimiento_realizado" :value="__('Seguimiento realizado ')" />
                     <x-text-input id="seguimiento_realizado" class="block mt-1 w-full" type="text"
@@ -271,16 +262,16 @@
                     </select>
 
                 </div>
+
             </div>
         </div>
     </div>
     <div class="mt-6 flex items-center justify-end gap-x-6">
-        <x-button2>
+        <x-button2 type="submit" wire:click="setShouldSave">
             {{ 'Crear Registro ' }}
         </x-button2>
     </div>
 </form>
-
 {{-- Modales --}}
 <livewire:modal-funcionario></livewire:modal-funcionario>
 <livewire:modal-expediente></livewire:modal-expediente>
