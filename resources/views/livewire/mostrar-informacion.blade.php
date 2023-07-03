@@ -1,4 +1,4 @@
-<main class="md:flex md:flex-row md:mt-24 md:justify-center md:items-center">
+<main class="md:flex md:flex-row md:mt-10 md:justify-center md:items-center">
     <div class="md:w-2/3 bg-login shadow-md">
         <h1 class=" font-bold uppercase text-center pt-10 text-usuario-letra"> {{ Auth()->user()->name }} </h1>
         <div class="container w-16 mx-auto text-center">

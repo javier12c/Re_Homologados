@@ -87,7 +87,7 @@
                         wire:click="$emit('openModal')">El servidor publico no esta registrado</button>
                 </div>
 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-6">
                     <x-input-label for="asunto" :value="__('Asunto')" />
                     <div class="mt-2">
                         <textarea type="text" wire:model="asunto" id="asunto" autocomplete="family-name" :value="old('asunto')"
@@ -123,8 +123,7 @@
                     @enderror
 
                 </div>
-
-
+                {{-- Muestra elc componente si esta seleccionado un funcionario --}}
                 @if (!is_null($cargo2))
                     <div class="sm:col-span-3 mt-2">
                         <x-input-label for="cargo" :value="__('Cargo')" />

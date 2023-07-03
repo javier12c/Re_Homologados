@@ -3,7 +3,7 @@
     <livewire:mostrar-aside></livewire:mostrar-aside>
 @endsection
 @section('contenido')
-    <main class="md:flex md:flex-row md:mt-24 md:justify-center md:items-center">
+    <main class="mt-0 md:flex md:flex-row  md:justify-center md:items-center">
         <h1 class=" font-bold text-3xl ">Registros creados por fecha</h1>
     </main>
     <canvas id="registros-chart"></canvas>

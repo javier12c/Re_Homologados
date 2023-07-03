@@ -18,6 +18,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
     @livewireStyles
@@ -60,7 +62,6 @@
     @yield('aside')
     <div class="p-6 sm:ml-64">
         <div class=" p-6  mt-14 ">
-
             <div class="flex gap-4">
                 <div class=" w-24 h-10 mt-6 px-6 sm:w-1/4 xl:w-1/3 sm:mt-0">
                     <div class="flex items-center  shadow-sm rounded-md bg-gray-50">
@@ -85,8 +86,9 @@
                         </div>
                     </div>
                 </div>
+                <livewire:search></livewire:search>
             </div>
-            <main class="container mx-auto mt-10">
+            <main class="container mx-auto mt-5">
                 <h2 class=" font-black text-center text-3xl mb-10">@yield('titulo')</h2>
                 @yield('contenido')
             </main>
