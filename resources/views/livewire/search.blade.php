@@ -3,6 +3,7 @@
         x-init="flatpickr($refs.input, {
             mode: 'range',
             dateFormat: 'd/m/Y',
+            altFormat: 'd/m/Y',
             onChange: function(selectedDates) {
                 $wire.set('dateRange', selectedDates.map(date => date.toISOString().split('T')[0]).join(' a '));
             }

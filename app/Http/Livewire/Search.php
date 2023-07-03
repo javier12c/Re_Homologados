@@ -22,8 +22,8 @@ class Search extends Component
         $dates = explode(' to ', $this->dateRange);
 
         if (count($dates) === 2) {
-            $startDate = trim($dates[0]);
-            $endDate = trim($dates[1]);
+            $startDate = \DateTime::createFromFormat('d/m/Y', $dates[0])->format('d-m-y');
+            $endDate = \DateTime::createFromFormat('d/m/Y', $dates[1])->format('d-m-y');
 
             $this->count = Registro::where('reg_fkusuario', auth()->user()->id)->whereBetween('created_at', [$startDate, $endDate])->count();
         }
